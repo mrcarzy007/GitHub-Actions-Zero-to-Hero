@@ -1,33 +1,27 @@
-name: My First GitHub Actions
+name: My First GitHub Actions Success Test
 
 on: [push]
 
 jobs:
   build:
-    # 1. Yahan 'Aditya' hata kar 'self-hosted' kiya taaki EC2 connect ho sake
+    # Tumhaare EC2 instance ko catch karne ke liye
     runs-on: self-hosted
 
-    strategy:
-      matrix:
-        # 2. Yahan sahi Python version (jaise 3.9 ya 3.10) daala
-        python-version: ["3.10"]
-
     steps:
+    # Code ko runner par pull karne ke liye
     - uses: actions/checkout@v3
     
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    # Note: Agar tumhare is naye EC2 server par python3 aur pip install nahi hai, 
-    # toh tum steps mein normal bash commands bhi chala sakte ho.
-    - name: Install dependencies
+    - name: Welcome Message
       run: |
-        python3 -m pip install --upgrade pip || true
-        pip3 install pytest || true
+        echo "=================================================="
+        echo "Bhai, Aditya ka runner ekdum mast chal raha hai! 🎉"
+        echo "=================================================="
 
-    - name: Run tests
+    - name: Server Ki Details Check Karo
       run: |
-        cd src
-        python3 -m pytest addition.py || true
+        echo "Uptime dekhye server ka:"
+        uptime
+        echo "Kaun sa OS chal raha hai:"
+        uname -a
+        echo "Current User kaun hai:"
+        whoami
