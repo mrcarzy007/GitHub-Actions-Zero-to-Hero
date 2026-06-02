@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: Aditya:kumar
+    runs-on: Aditya
 
     strategy:
       matrix:
